@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as userService from '../../utilities/users-service';
 
-export default function NavBar({ user, setUser }) {
-  const [randomGame, setRandomGame] = useState(null)
+export default function NavBar({ user, setUser, randomGame }) {
 
   function handleLogOut() {
     userService.logOut();
@@ -12,11 +11,10 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <Link to='/'>InvestiGame</Link>
+      <Link class="site-name" to='/'>InvestiGame</Link>
+      <Link to={`/games/${randomGame.id}`}>Random Game</Link>
       &nbsp; | &nbsp;
-      <Link to={`/games/${randomGame}`}>Random Game</Link>
-      &nbsp; | &nbsp;
-      <Link to='/games'>Games</Link>
+      <Link to='/games'>All Games</Link>
       &nbsp; | &nbsp;
       { user ?
       <>

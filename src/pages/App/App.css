@@ -1,38 +1,52 @@
-.App {
+body {
+  background-color: rgb(101, 138, 217);
   text-align: center;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+img {
+  height:15vh;
+  width:15vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+  text-decoration: none;
+  color:black;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+nav {
+  border-bottom: 0.3vmin solid black;
+  height:7vh;
+  display:flex;
+  justify-content: flex-end;
   align-items: center;
+  padding: 0.3vh 1vw 0 1vw;
+}
+
+.site-name {
+  margin-right: auto;
+  font-size:4vmin;
+}
+
+.game-card-cont {
+  display:flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex: 1 1 0;
+  flex-wrap: wrap;
+  gap:1vmin;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.game-card {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:17vw;
+  height:23vh;
+  gap:1vmin;
+  border: 0.3vmin solid black;
+  border-radius: 0.5vmin;
+  background-color: rgb(156, 199, 242);
 }
