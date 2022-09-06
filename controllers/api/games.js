@@ -4,7 +4,8 @@ const rootURL = 'https://api.rawg.io/api'
 
 module.exports = {
     index,
-    random
+    random,
+    show
 }
 
 async function index(req,res) {
@@ -21,4 +22,11 @@ async function random(req, res) {
     const jsonData = await fetchResults.json();
     const randomGame = jsonData.results[randIdx];
     res.json(randomGame);
+}
+
+async function show(req, res) {
+    const fetchResults = await fetch(`${rootURL}/games/${req.params.id}?key=${apiKey}`);
+    const jsonData = await fetchResults.json();
+    const data = jsonData.results
+    res.json(data);    
 }

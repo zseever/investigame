@@ -5,7 +5,7 @@ import * as gamesAPI from '../../utilities/games-api';
 import HomePage from '../HomePage/HomePage';
 import AuthPage from '../AuthPage/AuthPage';
 import GamesPage from '../GamesPage/GamesPage';
-import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
+import GamePage from '../GamePage/GamePage';
 import MyGamesPage from '../MyGamesPage/MyGamesPage';
 import NavBar from '../../components/NavBar/NavBar';
 import Footer from '../../components/Footer/Footer';
@@ -31,7 +31,7 @@ export default function App() {
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/games' element={<GamesPage />} />
-            <Route path='/orders' element={<OrderHistoryPage />} />
+            <Route path='/games/:gameId' element={<GamePage />} />
             <Route path='/library' element={<MyGamesPage />} />
             {/* temporary routing until a redirect after sign-in */}
             {user ?
