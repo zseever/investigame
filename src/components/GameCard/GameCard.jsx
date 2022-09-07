@@ -5,8 +5,6 @@ export default function GameCard({ game }) {
             <div className="game-card">
                 <p>{game.name}</p>
                 <img src={game.background_image} alt={game.slug} />
-                {/* <p>Genres: {game.genres.map(x => x.name).join(',') }</p> */}
-
             </div>
         </a>
         </>

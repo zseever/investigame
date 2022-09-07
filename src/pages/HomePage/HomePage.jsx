@@ -1,16 +1,25 @@
-import FeaturedGame from '../../components/FeaturedGame/FeaturedGame';
+import { useState, useEffect} from 'react';
+import * as gamesAPI from '../../utilities/games-api';
+import GameCard from '../../components/GameCard/GameCard';
 
 export default function HomePage() {
-    const tempGame = {title:'Donkey Kong', img:'https://i.imgur.com/TCGLRi6.png', releaseDate: '7-7-2010',}
+    const [games, setGames] = useState(null);
+
+    useEffect(function () {
+        if (!games) {
+            async function getGames() {
+                const featGames = await gamesAPI.getFeaturedGames()
+                setGames(featGames)
+            }
+            getGames();
+        }
+    },[])
     
     return (
         <>
             <h1>Featured Games</h1>
-            <div>
-                <FeaturedGame game={tempGame}/>
-                <FeaturedGame game={tempGame}/>
-                <FeaturedGame game={tempGame}/>
-                <FeaturedGame game={tempGame}/>
+            <div className="featured-games-cont">
+                {games && games.map((game,idx) => <GameCard key={idx} game={game}/>)}
             </div>    
         </>
     )
