@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import * as userService from '../../utilities/users-service';
 
 export default function NavBar({ user, setUser, randomGame }) {

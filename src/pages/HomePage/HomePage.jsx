@@ -13,7 +13,7 @@ export default function HomePage() {
             }
             getGames();
         }
-    },[])
+    },[games])
     
     return (
         <>
