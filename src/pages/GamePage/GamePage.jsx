@@ -16,15 +16,17 @@ export default function GamePage() {
 
     return (
         <div>
-            {game ?
+            {game && (
                 <>
                 <p>{game.name}</p>
                 <img src={game.background_image} alt={game.slug} />
                 <p>Release Date: {game.released}</p>
+                <p>ESRB Rating: {game.esrb_rating.name}</p>
+                {/* add anchor html elements below for tag searching ?*/}
+                <p>Tags: {game.tags.map(x => x.name).join(', ')}</p>
+                <p>{game.description_raw}</p>
                 </>
-                :
-                <p></p>
-            }
+            )}
         </div>
     )
 }
