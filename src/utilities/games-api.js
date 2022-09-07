@@ -8,3 +8,7 @@ export function getGames() {
 export function getRandomGame() {
     return sendRequest(`${BASE_URL}/random`)
 }
+
+export function getById() {
+    
+}
