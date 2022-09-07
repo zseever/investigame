@@ -27,6 +27,5 @@ async function random(req, res) {
 async function show(req, res) {
     const fetchResults = await fetch(`${rootURL}/games/${req.params.id}?key=${apiKey}`);
     const jsonData = await fetchResults.json();
-    const data = jsonData.results
-    res.json(data);    
+    res.json(jsonData);    
 }

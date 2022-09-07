@@ -23,9 +23,9 @@ export default function GamesPage() {
     <>
     <h1>Games</h1>
     <form action="">
-      
+
     </form>
-    <div class="game-card-cont">
+    <div className="game-card-cont">
       {gameList}
     </div>
     </>
