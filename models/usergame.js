@@ -24,8 +24,8 @@ usergame.statics.getList = function(userId) {
 
 usergame.methods.addGameToList = function(gameId) {
     const userList = this;
-    const gameList = userList.gameList.find(game => game.gameId.equals(gameId))
-    if (!gameList) {
+    const gameInList = userList.gameList.some(game => `${game.gameId}` === gameId);
+    if (!gameInList) {
         userList.gameList.push({
             gameId: gameId,
             interest: 1,

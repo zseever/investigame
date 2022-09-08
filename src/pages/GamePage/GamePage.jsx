@@ -30,7 +30,7 @@ export default function GamePage() {
                     <p>{game.description_raw}</p>
                     <a href={game.website}>{game.name}'s Website</a>
                     <p>Release Date: {game.released}</p>
-                    <p>ESRB Rating: {game.esrb_rating.name}</p>
+                    {game.esrb_rating && <p>ESRB Rating: {game.esrb_rating.name}</p>}
                     {/* add anchor html elements below for tag searching ?*/}
                     <p>Platforms: {game.platforms.map(x => x.platform.name).join(', ')}</p>
                     <p>Genres: {game.genres.map(x => x.name).join(', ')}</p>

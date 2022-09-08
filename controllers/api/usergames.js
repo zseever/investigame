@@ -12,5 +12,8 @@ async function list(req, res) {
 }
 
 async function addToList(req, res) {
-
+    const list = await Usergame.getList(req.user._id);
+    await list.addGameToList(req.params.id);
+    console.log(list);
+    res.json(list);
 }
