@@ -11,7 +11,7 @@ export default function NavBar({ user, setUser, randomGame }) {
   return (
     <nav>
       <Link className="site-name" to='/'>InvestiGame</Link>
-      <Link to={`/games/${randomGame.id}`}>Random Game</Link>
+      <Link to={`/games/${randomGame}`}>Random Game</Link>
       &nbsp; | &nbsp;
       <Link to='/games'>All Games</Link>
       &nbsp; | &nbsp;

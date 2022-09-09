@@ -18,7 +18,7 @@ export default function App() {
   useEffect(function() {
     async function randomGame() {
       const game = await gamesAPI.getRandomGame();
-      setRandomGame(game);
+      setRandomGame(game.id);
     }
     randomGame();
   }, [])

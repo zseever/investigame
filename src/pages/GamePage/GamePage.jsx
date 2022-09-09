@@ -32,9 +32,9 @@ export default function GamePage() {
                     <p>Release Date: {game.released}</p>
                     {game.esrb_rating && <p>ESRB Rating: {game.esrb_rating.name}</p>}
                     {/* add anchor html elements below for tag searching ?*/}
-                    <p>Platforms: {game.platforms.map(x => x.platform.name).join(', ')}</p>
-                    <p>Genres: {game.genres.map(x => x.name).join(', ')}</p>
-                    <p>Tags: {game.tags.map(x => x.name).join(', ')}</p>
+                    {game.platforms && <p>Platforms: {game.platforms.map(x => x.platform.name).join(', ')}</p>}
+                    {game.genres && <p>Genres: {game.genres.map(x => x.name).join(', ')}</p>}
+                    {game.tags && <p>Tags: {game.tags.map(x => x.name).join(', ')}</p>}
                     <div>
                         <p>Ratings</p>
                         <ul>

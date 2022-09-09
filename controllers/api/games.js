@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 const apiKey = process.env.APIKey
 const rootURL = 'https://api.rawg.io/api'
+const Game = require('../../models/game');
 
 module.exports = {
     index,
@@ -35,7 +36,44 @@ async function featuredGames(req, res) {
 }
 
 async function show(req, res) {
-    const fetchResults = await fetch(`${rootURL}/games/${req.params.id}?key=${apiKey}`);
-    const jsonData = await fetchResults.json();
-    res.json(jsonData);    
+    const game = await Game.findOne({ id: req.params.id });
+    if (game) {
+        console.log(game)
+        console.log('stored game');
+        res.json(game);
+    } else {
+        const fetchGame = await storeGame(req.params.id);
+        console.log(fetchGame);
+        console.log('fetched game');
+        res.json(fetchGame);
+    }
+    // const fetchResults = await fetch(`${rootURL}/games/${req.params.id}?key=${apiKey}`);
+    // const jsonData = await fetchResults.json();
+    // res.json(jsonData);    
+}
+
+async function storeGame(gameId) {
+    const fetchResults = await fetch(`${rootURL}/games/${gameId}?key=${apiKey}`);
+    const fetchData = await fetchResults.json();
+    const newGameData = {
+        id: fetchData.id,
+        slug: fetchData.slug,
+        name: fetchData.name,
+        description_raw: fetchData.description_raw,
+        released: fetchData.released,
+        background_image: fetchData.background_image,
+        website: fetchData.website,
+        rating: fetchData.rating,
+        ratings: fetchData.ratings,
+        reddit_url: fetchData.reddit_url,
+        reddit_name: fetchData.reddit_name,
+        reddit_description: fetchData.reddit_description,
+        reddit_logo: fetchData.reddit_logo,
+        platforms: fetchData.platforms,
+        genres: fetchData.genres,
+        tags: fetchData.tags,
+        esrb_rating: fetchData.esrb_rating
+    }
+    const newGame = new Game(newGameData)
+    return await newGame.save();
 }
