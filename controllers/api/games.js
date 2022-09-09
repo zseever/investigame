@@ -19,37 +19,39 @@ async function index(req,res) {
 
 async function random(req, res) {
     let pageNum = Math.ceil(Math.random()*10);
-    let randIdx = Math.floor(Math.random()*50);
+    let randIdx = Math.floor(Math.random()*39);
     const fetchResults = await fetch(`${rootURL}/games?key=${apiKey}&page=${pageNum}&page_size=50`);
     const jsonData = await fetchResults.json();
     const randomGame = jsonData.results[randIdx];
+    console.log(`pagenum: ${pageNum} - randIdx: ${randIdx}`)
+    try {
+        console.log(randomGame.name);
+    } catch {
+        console.log(jsonData.results[randIdx])
+    }
     res.json(randomGame);
 }
 
 async function featuredGames(req, res) {
     let pageNum = Math.ceil(Math.random()*10);
-    let randIdx = Math.floor(Math.random()*45);
+    let randIdx = Math.floor(Math.random()*34);
     const fetchResults = await fetch(`${rootURL}/games?key=${apiKey}&page=${pageNum}&page_size=50`);
     const jsonData = await fetchResults.json();
     const data = jsonData.results.slice(randIdx,randIdx+5)
+    console.log(`featured game - pagenum: ${pageNum} - randIdx: ${randIdx}`)
     res.json(data);    
 }
 
 async function show(req, res) {
     const game = await Game.findOne({ id: req.params.id });
     if (game) {
-        console.log(game)
         console.log('stored game');
         res.json(game);
     } else {
         const fetchGame = await storeGame(req.params.id);
-        console.log(fetchGame);
         console.log('fetched game');
         res.json(fetchGame);
     }
-    // const fetchResults = await fetch(`${rootURL}/games/${req.params.id}?key=${apiKey}`);
-    // const jsonData = await fetchResults.json();
-    // res.json(jsonData);    
 }
 
 async function storeGame(gameId) {
