@@ -10,9 +10,7 @@ module.exports = {
 
 async function list(req, res) {
     const list = await Usergame.getList(req.user._id).lean();
-    console.log(list);
     const gameList = list.gameList;
-    console.log(gameList);
     const gameData = await Promise.all(gameList.map(async function(x) {
         const game = await Game.findOne({id: x.gameId});
         x.gameData = game;
@@ -26,17 +24,10 @@ async function addToList(req, res) {
     await list.addGameToList(req.params.id);
     const game = await Game.findOne({ id: req.params.id });
     if (game) {
-        console.log('stored game');
     } else {
         await storeGame(req.params.id);
-        console.log('fetched game');
     }
     res.json(list);
-}
-
-async function gameList(req, res) {
-    const list = await Usergame.getList(req.user._id);
-    const gameIds = list.gameList.map(x => x.gameId)
 }
 
 async function storeGame(gameId) {

@@ -3,21 +3,24 @@ import * as usergamesAPI from '../../utilities/usergames-api';
 
 export default function MyGamesPage() {
   const [gameList, setGameList] = useState(null);
-  const [editMode, setEditMode] = useState()
+  const [editMode, setEditMode] = useState(null)
 
-  function handleClick(evt) {
+  function handleSubmit(evt) {
 
   }
 
-  function changeEditMode() {
-    const edit = editMode
-    setEditMode(!edit)
+  async function changeEditMode(idx) {
+    const list = editMode.map(x => x);
+    list[idx].edit = !list[idx].edit
+    setEditMode(list);
   }
 
   useEffect(function() {
     async function getUserList() {
       const list = await usergamesAPI.getList();
       setGameList(list);
+      const edit = list.map(x => ({'edit':false}))
+      setEditMode(edit);
     }
     getUserList();
   },[])
@@ -30,7 +33,7 @@ export default function MyGamesPage() {
           <div key={idx} className="my-game-row">
             <a key={idx} href={`/games/${x.gameId}`}><p>{x.gameData.name}</p></a>
 
-            {editMode ? 
+            {editMode[idx].edit ? 
               <>
                 <div className="interest-cont">
                   <button>-</button>
@@ -44,14 +47,17 @@ export default function MyGamesPage() {
                     <option value="Completed">Completed</option>
                   </select>
                 </p>
-                <button onClick={changeEditMode}>Save Changes</button>
+                <button onClick={() => {
+                  changeEditMode(idx);
+                  handleSubmit();
+                  }}>Save Changes</button>
               </>
               :
               <>
                 <p>Interest: {x.interest}</p>
                 <p>Progress: {x.progress}</p>
                 <div>
-                  <button onClick={changeEditMode}>Edit</button>
+                  <button onClick={() => changeEditMode(idx)}>Edit</button>
                   <button>Delete</button>
                 </div>
               </>
