@@ -5,8 +5,30 @@ export default function MyGamesPage() {
   const [gameList, setGameList] = useState(null);
   const [editMode, setEditMode] = useState(null)
 
-  function handleSubmit(evt) {
+  async function handleSubmit(idx) {
+    await usergamesAPI.updateGame(gameList[idx]);
+  }
 
+  async function deleteGame(gameId) {
+    const result = await usergamesAPI.deleteGame(gameId);
+    if (result === 'deleted') {
+      const list = await usergamesAPI.getList();
+      setGameList(list);
+    }
+  }
+
+  function changeInterest(idx, inc) {
+    const list = gameList.map(x => x);
+    if (list[idx].interest + inc === 6 || list[idx].interest + inc === 0) {
+      return
+    }
+    list[idx].interest += inc
+    setGameList(list);
+  }
+
+  function changeProgress(idx, evt) {
+    const list = gameList.map(x => x);
+    list[idx].progress = evt.target.value
   }
 
   async function changeEditMode(idx) {
@@ -36,20 +58,21 @@ export default function MyGamesPage() {
             {editMode[idx].edit ? 
               <>
                 <div className="interest-cont">
-                  <button>-</button>
+                  <button onClick={() => changeInterest(idx,-1)}>-</button>
                   <p>Interest: {x.interest}</p>
-                  <button>+</button>
+                  <button onClick={() => changeInterest(idx,1)}>+</button>
                 </div>
                 <p>Progress: 
-                  <select>
-                    <option value={x.progress}>{x.progress}</option>
+                  <select onChange={(evt) => changeProgress(idx,evt)}>
+                    <option value="Not Started">Not Started</option>
+                    <option value="In Progress">In Progress</option>
                     <option value="Dropped">Dropped</option>
                     <option value="Completed">Completed</option>
                   </select>
                 </p>
                 <button onClick={() => {
                   changeEditMode(idx);
-                  handleSubmit();
+                  handleSubmit(idx);
                   }}>Save Changes</button>
               </>
               :
@@ -58,7 +81,7 @@ export default function MyGamesPage() {
                 <p>Progress: {x.progress}</p>
                 <div>
                   <button onClick={() => changeEditMode(idx)}>Edit</button>
-                  <button>Delete</button>
+                  <button onClick={() => deleteGame(x.gameId)}>Delete</button>
                 </div>
               </>
             

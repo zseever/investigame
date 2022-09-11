@@ -9,3 +9,11 @@ export function getList() {
 export function addGameToList(gameId) {
     return sendRequest(`${BASE_URL}/list/games/${gameId}`, 'POST');
 }
+
+export function updateGame(userGameData) {
+    return sendRequest(`${BASE_URL}/list/games`, 'PUT', {userGameData});
+}
+
+export function deleteGame(gameId) {
+    return sendRequest(`${BASE_URL}/list/games/${gameId}`, 'DELETE');
+}

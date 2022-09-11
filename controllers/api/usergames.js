@@ -6,6 +6,8 @@ const rootURL = 'https://api.rawg.io/api'
 module.exports = {
     list,
     addToList,
+    updateGame,
+    deleteGame,
 }
 
 async function list(req, res) {
@@ -28,6 +30,23 @@ async function addToList(req, res) {
         await storeGame(req.params.id);
     }
     res.json(list);
+}
+
+async function updateGame(req, res) {
+    const list = await Usergame.getList(req.user._id);
+    const game = list.gameList.find(x => x.gameId === req.body.userGameData.gameId)
+    game.interest = req.body.userGameData.interest;
+    game.progress = req.body.userGameData.progress;
+    list.save();
+}
+
+async function deleteGame(req, res) {
+    const list = await Usergame.getList(req.user._id);
+    const gameIdx = list.gameList.findIndex(x => x.gameId == req.params.id);
+    if (gameIdx === -1) return;
+    list.gameList.splice(gameIdx,1);
+    list.save();
+    res.json('deleted');
 }
 
 async function storeGame(gameId) {
