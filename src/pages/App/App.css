@@ -57,3 +57,21 @@ nav {
   align-items: center;
   gap:1vw;
 }
+
+.my-game-row {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0.3vmin solid black;
+  border-radius: 0.5vmin;
+  margin-bottom:1vh;
+  width:30vw;
+  height:20vh;
+  margin: 1vh auto;
+  background-color: rgb(156, 199, 242);
+}
+
+.interest-cont {
+  display:flex;
+}

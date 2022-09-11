@@ -9,15 +9,15 @@ module.exports = {
 }
 
 async function list(req, res) {
-    const list = await Usergame.getList(req.user._id);
+    const list = await Usergame.getList(req.user._id).lean();
+    console.log(list);
     const gameList = list.gameList;
-    console.log(gameList)
-    const gameData = await gameList.map(async function(x) {
-        let game = await Game.findOne({id: x.gameId});
-        console.log({...x, 'gameData': game})
-        return {...x, 'gameData': game}
-    })
-    // console.log(gameData);
+    console.log(gameList);
+    const gameData = await Promise.all(gameList.map(async function(x) {
+        const game = await Game.findOne({id: x.gameId});
+        x.gameData = game;
+        return x
+    }));
     res.json(gameData);
 }
 

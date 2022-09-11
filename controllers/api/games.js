@@ -23,12 +23,6 @@ async function random(req, res) {
     const fetchResults = await fetch(`${rootURL}/games?key=${apiKey}&page=${pageNum}&page_size=50`);
     const jsonData = await fetchResults.json();
     const randomGame = jsonData.results[randIdx];
-    console.log(`pagenum: ${pageNum} - randIdx: ${randIdx}`)
-    try {
-        console.log(randomGame.name);
-    } catch {
-        console.log(jsonData.results[randIdx])
-    }
     res.json(randomGame);
 }
 

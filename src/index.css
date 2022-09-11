@@ -131,7 +131,7 @@ input:focus {
   border-color: var(--orange);
 }
 
-button, a.button {
+/* button, a.button {
   margin: 1vmin;
   padding: 1vmin;
   color: var(--white);
@@ -164,4 +164,4 @@ button:disabled, form:invalid button[type="submit"] {
 button[type="submit"] {
   grid-column: span 2;
   margin: 1vmin 0 0;
-}
+} */
