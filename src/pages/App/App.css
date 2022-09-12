@@ -75,3 +75,14 @@ nav {
 .interest-cont {
   display:flex;
 }
+
+.filter-bar {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.filter-cont {
+  display:flex;
+  flex-direction: column;
+}
