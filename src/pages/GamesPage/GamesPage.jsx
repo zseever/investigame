@@ -6,21 +6,22 @@ import FilterBar from '../../components/FilterBar/FilterBar';
 
 export default function GamesPage() {
   const [games, setGames] = useState([])
-  const [filterOptions, setFilterOptions] = useState({'console':'All', rating:'All', genre:'All'})
+  const [filterOptions, setFilterOptions] = useState({platforms:'All', genres:'All', metacritic: 0})
 
-  const consoleOptions = {filter:'console', label:'Consoles', values:['All','PC','Nintendo Switch','Wii','iOS','macOS','Android','Playstation 3','Playstation 4','Playstation 5','Xbox One','Xbox 360','Xbox Series S/X']}
-  const ratingOptions = {filter: 'rating', label:'Rating', values:['All','Skip','Meh','Recommended','Exceptional']}
-  const genreOptions = {filter: 'genre', label: 'Genre', values:['All','Action','Adventure','Arcade','Board Games','Card','Casual','Educational','Indie','Family','Fighting','Massively Multiplayer','Platformer','Puzzle','Racing','RPG','Shooter','Simulation','Sports','Strategy',]}
+  const consoleOptions = {filter:'platforms', label:'Consoles:', values:['All','PC','Nintendo Switch','Wii','Wii U','iOS','macOS','Android','Playstation 3','Playstation 4','Playstation 5','Xbox One','Xbox 360','Xbox Series S/X'],searchValues:['All',4,7,11,10,3,5,21,16,18,187,1,14,186]}
+  const metacriticOptions = {filter:'metacritic', label:'Rating above: ', values:0};
+  const genreOptions = {filter: 'genres', label: 'Genre:', values:['All','Action','Adventure','Arcade','Board Games','Card','Casual','Educational','Indie','Family','Fighting','Massively Multiplayer','Platformer','Puzzle','Racing','RPG','Shooter','Simulation','Sports','Strategy',]}
 
   const gameList = games.map((game,idx) =>
     <GameCard key={idx} game={game} />
   )
 
+  async function getItems() {
+    const gamesList = await gamesAPI.getGames(filterOptions);
+    setGames(gamesList)
+  }
+
   useEffect(function() {
-    async function getItems() {
-      const gamesList = await gamesAPI.getGames();
-      setGames(gamesList)
-    }
     getItems()
   }, [])
 
@@ -28,10 +29,10 @@ export default function GamesPage() {
     <>
     <h1>Games</h1>
     <div className="filter-bar">
-      <FilterBar options={consoleOptions}/>
-      <FilterBar options={ratingOptions}/>
-      <FilterBar options={genreOptions}/>
-      <button>Search</button>
+      <FilterBar options={consoleOptions} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
+      <FilterBar options={metacriticOptions} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
+      <FilterBar options={genreOptions} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
+      <button onClick={getItems}>Search</button>
     </div>
     <div className="game-card-cont">
       {gameList}

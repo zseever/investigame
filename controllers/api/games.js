@@ -11,7 +11,22 @@ module.exports = {
 }
 
 async function index(req,res) {
-    const fetchResults = await fetch(`${rootURL}/games?key=${apiKey}&page_size=50`);
+    let queryStr = '';
+    let queryData = req.body.queryValues
+    console.log(queryData);
+    for (prop in queryData) {
+        if (!(queryData[prop] === 'All' || queryData[prop] === "" || queryData[prop] === 0)) {
+            if (prop === 'metacritic') {
+                queryStr += `&${prop}=${queryData[prop]},100`
+            } else if (prop === 'genres') {
+                queryStr += `&${prop}=${queryData[prop].toLowerCase()}`
+            } else {
+                queryStr += `&${prop}=${queryData[prop]}`
+            }
+        }
+    }
+    console.log('queryStr is:',queryStr);
+    const fetchResults = await fetch(`${rootURL}/games?key=${apiKey}${queryStr}&page_size=50`);
     const jsonData = await fetchResults.json();
     const data = jsonData.results
     res.json(data);

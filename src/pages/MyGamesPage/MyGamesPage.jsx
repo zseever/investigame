@@ -29,6 +29,7 @@ export default function MyGamesPage() {
   function changeProgress(idx, evt) {
     const list = gameList.map(x => x);
     list[idx].progress = evt.target.value
+    setGameList(list);
   }
 
   async function changeEditMode(idx) {
