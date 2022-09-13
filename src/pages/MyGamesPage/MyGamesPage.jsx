@@ -54,12 +54,11 @@ export default function MyGamesPage() {
       {gameList && 
         gameList.map((x,idx) =>
           
-          // <img src={x.gameData.background_image} alt="image" />
-          <div key={idx} className={`my-game-row ${x.progress === 'Completed' ? 'completed' : ''}`}>
+        <div key={idx} className={`my-game-row ${x.progress === 'Completed' ? 'completed' : ''}`}>
+          <img className='my-game-img' src={x.gameData.background_image} alt={x.gameData.name} />
+          <div className='flex-col my-game-data'>
             <a key={idx} href={`/games/${x.gameId}`}>
-              <div className="flex-row">
                 <p>{x.gameData.name}</p>
-              </div>
             </a>
 
             {editMode[idx].edit ? 
@@ -91,10 +90,10 @@ export default function MyGamesPage() {
                   <button onClick={() => deleteGame(x.gameId)}>Delete</button>
                 </div>
               </>
-            
-            }
 
+            }
           </div>
+        </div>
       )}
     </div>
   );

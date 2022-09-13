@@ -52,7 +52,7 @@ export default function GamePage() {
                                 {display === 'desc' ?
                                     <>
                                         <p>{game.description_raw}</p>
-                                        <a href={game.website} target="_blank">{game.name}'s Website</a>
+                                        <a href={game.website} target="_blank" rel="noreferrer">{game.name}'s Website</a>
                                         <p>Release Date: {game.released}</p>
                                         {game.esrb_rating && <p>ESRB Rating: {game.esrb_rating.name}</p>}
                                     </>

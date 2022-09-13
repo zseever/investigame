@@ -1,9 +1,11 @@
 body {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(141, 141, 141);
   text-align: center;
   box-sizing:border-box;
   margin:0;
   padding:0;
+  font-size: 1.6vmin;
+  font-family: 'Azeret Mono', monospace;
 }
 
 img {
@@ -18,13 +20,14 @@ a {
 }
 
 nav {
-  background-color: rgb(129, 176, 237);
+  background-color: rgb(76, 218, 197);
   border-bottom: 0.3vmin solid black;
   height:7vh;
   display:flex;
   justify-content: flex-end;
   align-items: center;
   padding: 0.3vh 1vw 0 1vw;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .site-name {
@@ -47,12 +50,16 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width:17vw;
+  width:23vw;
   height:23vh;
   gap:1vmin;
-  border: 0.3vmin solid black;
+  /* border: 0.1vmin solid rgb(41, 172, 143); */
+  border: 0.1vmin solid rgb(255, 255, 255);
   border-radius: 0.5vmin;
-  background-color: rgb(129, 176, 237);
+  background-color: rgb(76, 218, 197);
+  font-family: 'Azeret Mono', monospace;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-size: 100% 100%;
 }
 
 .featured-games-cont {
@@ -64,16 +71,16 @@ nav {
 
 .my-game-row {
   display:flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  border: 0.3vmin solid black;
+  border: 0.1vmin solid black;
   border-radius: 0.5vmin;
   margin-bottom:1vh;
-  width:40vw;
+  width:50vw;
   height:25vh;
   margin: 1vh auto;
-  background-color: rgb(156, 199, 242);
+  background-color: rgb(76, 218, 197);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .interest-cont {
@@ -98,7 +105,7 @@ nav {
 }
 
 .completed {
-  background-color: rgb(128, 166, 205);
+  background-color: rgb(65, 165, 150);
 }
 
 .flex-row {
@@ -116,6 +123,7 @@ nav {
 }
 
 .show-img {
+  border-radius:0.5vmin;
   width:40vw;
   height:40vh;
   padding: 0 3vw;
@@ -128,4 +136,31 @@ nav {
 .preview-thumbnails {
   width:7vw;
   height:7vh;
+}
+
+/* .game-card-img {
+  border-radius:0.5vmin;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+} */
+
+
+.title-cont {
+  align-items: center;
+  width:100%;
+  height:15%;
+  color:black;;
+  background-color:rgba(255, 255, 255, 0.7);
+}
+
+.my-game-img {
+  width:50%;
+  height:100%;
+  border-radius:0.5vmin;
+  
+}
+
+.my-game-data {
+  width:50%;
 }

@@ -17,6 +17,7 @@ export default function GamesPage() {
   )
 
   async function getItems() {
+    console.log('getitems running');
     const gamesList = await gamesAPI.getGames(filterOptions);
     setGames(gamesList)
   }

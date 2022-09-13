@@ -11,7 +11,7 @@ export default function NavBar({ user, setUser, randomGame }) {
 
   return (
     <nav>
-      <div className="site-name">
+      <div className="site-name flex-row">
         <Link className="site-name" to='/'>InvestiGame</Link>
         <img className="nav-logo" src={logo} alt="logo" />
       </div>
