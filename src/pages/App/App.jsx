@@ -8,7 +8,6 @@ import GamesPage from '../GamesPage/GamesPage';
 import GamePage from '../GamePage/GamePage';
 import MyGamesPage from '../MyGamesPage/MyGamesPage';
 import NavBar from '../../components/NavBar/NavBar';
-import Footer from '../../components/Footer/Footer';
 import './App.css';
 
 export default function App() {
@@ -40,8 +39,6 @@ export default function App() {
               <Route path='/auth' element={<AuthPage setUser={setUser}/>} />
             }
           </Routes>
-
-          <Footer />
         </>
     </main>
   );

@@ -25,11 +25,11 @@ export default function FilterBar({ options, filterOptions, setFilterOptions }) 
 
     return (
         <div className="filter-cont">
-            <label>{options.label}</label>
+            <label className="filter-label">{options.label}</label>
             {options.filter === 'metacritic' ?
-                <input onChange={(evt) => handleChange(evt)} type="number" min="0" max="100" autoComplete="off"></input>
+                <input className="filter" onChange={(evt) => handleChange(evt)} type="number" min="0" max="100" defaultValue="1" autoComplete="off"></input>
                 :
-                <select onChange={(evt) => handleChange(evt)}>
+                <select className="filter" onChange={(evt) => handleChange(evt)}>
                     {options.filter === 'genres' ?
                         options.values.map((x,idx) => <option key={idx} value={x} autoComplete="off">{x}</option>)
                         :

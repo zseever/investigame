@@ -17,7 +17,6 @@ export default function GamesPage() {
   )
 
   async function getItems() {
-    console.log('getitems running');
     const gamesList = await gamesAPI.getGames(filterOptions);
     setGames(gamesList)
   }
@@ -33,7 +32,7 @@ export default function GamesPage() {
       <FilterBar key='console' options={consoleOptions} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
       <FilterBar key='meta' options={metacriticOptions} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
       <FilterBar key='genre' options={genreOptions} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
-      <button onClick={getItems}>Search</button>
+      <button className="filter" onClick={getItems}>Search</button>
     </div>
     <div className="game-card-cont">
       {gameList}

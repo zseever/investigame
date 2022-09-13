@@ -1,11 +1,18 @@
 body {
-  background-color: rgb(141, 141, 141);
+  background-color: rgb(214, 222, 238);
   text-align: center;
   box-sizing:border-box;
   margin:0;
   padding:0;
   font-size: 1.6vmin;
-  font-family: 'Azeret Mono', monospace;
+  font-family: 'Poppins', sans-serif;
+}
+
+.App {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 img {
@@ -15,20 +22,57 @@ img {
 }
 
 a {
-  text-decoration: underline;
-  color:rgb(20, 63, 60);
+  text-decoration: none;
+  color:rgb(253, 253, 253);
 }
 
+
+
 nav {
-  background-color: rgb(76, 218, 197);
+  background-color: rgb(66, 142, 204);
   border-bottom: 0.3vmin solid black;
   height:7vh;
+  width:100vw;
   display:flex;
   justify-content: flex-end;
   align-items: center;
   padding: 0.3vh 1vw 0 1vw;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0vmin 0.5vmin 1vmin;
+  font-family: 'Poppins', sans-serif;
+  font-size:1.5vmin;
 }
+
+button {
+  background-color: rgb(169, 193, 215);
+  color: black;
+  border:0.1vmin solid black;
+  border-radius:0.3vmin;
+  height:2.5vh;
+}
+
+button:hover {
+  background-color:rgb(73, 103, 130);
+  color:white;
+  cursor:pointer;
+}
+
+.nav-link {
+  font-family: 'Poppins', sans-serif;
+  font-size:1.5vmin;
+  color:black;
+}
+
+.nav-link:hover {
+  color:white;
+}
+
+.nav-div {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  width:40vw;
+}
+
 
 .site-name {
   margin-right: auto;
@@ -53,16 +97,16 @@ nav {
   width:23vw;
   height:23vh;
   gap:1vmin;
-  /* border: 0.1vmin solid rgb(41, 172, 143); */
   border: 0.1vmin solid rgb(255, 255, 255);
   border-radius: 0.5vmin;
-  background-color: rgb(76, 218, 197);
-  font-family: 'Azeret Mono', monospace;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.35) 0vmin 0.5vmin 1vmin;
   background-size: 100% 100%;
 }
 
 .featured-games-cont {
+  width:90vw;
+  zoom:80%;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -79,12 +123,25 @@ nav {
   width:50vw;
   height:25vh;
   margin: 1vh auto;
-  background-color: rgb(76, 218, 197);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: rgba(41, 113, 171, 0.665);
+  box-shadow: rgba(0, 0, 0, 0.35) 0vmin 0.5vmin 1vmin;
 }
 
 .interest-cont {
+  width:100%;
   display:flex;
+  justify-content: center;
+  align-items: center;
+  gap:1vw;
+}
+
+.interest-cont button {
+  width:1.9vw;
+  height:2.4vh;
+}
+
+.save-changes-btn {
+  width:10vw;
 }
 
 .filter-bar {
@@ -96,6 +153,8 @@ nav {
 .filter-cont {
   display:flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-logo {
@@ -105,7 +164,12 @@ nav {
 }
 
 .completed {
-  background-color: rgb(65, 165, 150);
+  opacity: 0.4;
+}
+
+.dropped {
+  opacity:0.4;
+  background-color:rgb(199, 68, 68)
 }
 
 .flex-row {
@@ -118,8 +182,27 @@ nav {
   flex-wrap:wrap;
 }
 
+.filter {
+  height:3vh;
+  border:0.1vmin solid black;
+  border-radius:0.3vmin;
+  width:7vw;
+  text-align: center;
+}
+
+.filter-label {
+  font-size:1.3vmin;
+}
+
+button.filter {
+  align-self:flex-end;
+}
+
 .flex-col {
-  display:column;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .show-img {
@@ -138,20 +221,15 @@ nav {
   height:7vh;
 }
 
-/* .game-card-img {
-  border-radius:0.5vmin;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-} */
-
-
 .title-cont {
   align-items: center;
   width:100%;
   height:15%;
-  color:black;;
-  background-color:rgba(255, 255, 255, 0.7);
+  color:white;
+  font-weight:bold;
+  /* background-color:rgba(255, 255, 255, 0.7); */
+  /* background-color: rgba(76, 218, 197, 0.576); */
+  background-color: rgba(41, 113, 171, 0.665);
 }
 
 .my-game-img {

@@ -54,7 +54,10 @@ export default function MyGamesPage() {
       {gameList && 
         gameList.map((x,idx) =>
           
-        <div key={idx} className={`my-game-row ${x.progress === 'Completed' ? 'completed' : ''}`}>
+        <div 
+          key={idx} 
+          className={`my-game-row 
+            ${x.progress === 'Completed' ? 'completed' : x.progress === 'Dropped' ? 'dropped' : 'test'}`}>
           <img className='my-game-img' src={x.gameData.background_image} alt={x.gameData.name} />
           <div className='flex-col my-game-data'>
             <a key={idx} href={`/games/${x.gameId}`}>
@@ -65,25 +68,28 @@ export default function MyGamesPage() {
               <>
                 <div className="interest-cont">
                   <button onClick={() => changeInterest(idx,-1)}>-</button>
-                  <p>Interest: {x.interest}</p>
+                  <p>Interest Level: {x.interest}</p>
                   <button onClick={() => changeInterest(idx,1)}>+</button>
                 </div>
                 <p>Progress: 
                   <select onChange={(evt) => changeProgress(idx,evt)}>
-                    <option value="Not Started">Not Started</option>
+                    {['Not Started','In Progress','Dropped','Completed'].map(str =>
+                      <option value={str} selected={str === x.progress ? true : false}>{str}</option>
+                    )}
+                    {/* <option value="Not Started">Not Started</option>
                     <option value="In Progress">In Progress</option>
                     <option value="Dropped">Dropped</option>
-                    <option value="Completed">Completed</option>
+                    <option value="Completed">Completed</option> */}
                   </select>
                 </p>
-                <button onClick={() => {
+                <button className="save-changes-btn" onClick={() => {
                   changeEditMode(idx);
                   handleSubmit(idx);
                   }}>Save Changes</button>
               </>
               :
               <>
-                <p>Interest: {x.interest}</p>
+                <p>Interest Level: {x.interest}</p>
                 <p>Progress: {x.progress}</p>
                 <div>
                   <button onClick={() => changeEditMode(idx)}>Edit</button>
