@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(101, 138, 217);
+  background-color: rgb(255, 255, 255);
   text-align: center;
   box-sizing:border-box;
   margin:0;
@@ -9,14 +9,16 @@ body {
 img {
   height:15vh;
   width:15vw;
+  margin:0;
 }
 
 a {
-  text-decoration: none;
-  color:black;
+  text-decoration: underline;
+  color:rgb(20, 63, 60);
 }
 
 nav {
+  background-color: rgb(129, 176, 237);
   border-bottom: 0.3vmin solid black;
   height:7vh;
   display:flex;
@@ -28,6 +30,8 @@ nav {
 .site-name {
   margin-right: auto;
   font-size:4vmin;
+  text-decoration: none;
+  color:black;
 }
 
 .game-card-cont {
@@ -48,7 +52,7 @@ nav {
   gap:1vmin;
   border: 0.3vmin solid black;
   border-radius: 0.5vmin;
-  background-color: rgb(156, 199, 242);
+  background-color: rgb(129, 176, 237);
 }
 
 .featured-games-cont {
@@ -66,8 +70,8 @@ nav {
   border: 0.3vmin solid black;
   border-radius: 0.5vmin;
   margin-bottom:1vh;
-  width:30vw;
-  height:20vh;
+  width:40vw;
+  height:25vh;
   margin: 1vh auto;
   background-color: rgb(156, 199, 242);
 }
@@ -85,4 +89,43 @@ nav {
 .filter-cont {
   display:flex;
   flex-direction: column;
+}
+
+.nav-logo {
+  width:3vw;
+  height:5vh;
+  transform: scaleX(-1);
+}
+
+.completed {
+  background-color: rgb(128, 166, 205);
+}
+
+.flex-row {
+  display:flex;
+  justify-content: center;
+  align-items:flex-start;
+}
+
+.wrap {
+  flex-wrap:wrap;
+}
+
+.flex-col {
+  display:column;
+}
+
+.show-img {
+  width:40vw;
+  height:40vh;
+  padding: 0 3vw;
+}
+
+.game-details {
+  width: 40vw;
+}
+
+.preview-thumbnails {
+  width:7vw;
+  height:7vh;
 }

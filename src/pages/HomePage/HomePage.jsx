@@ -16,7 +16,19 @@ export default function HomePage() {
     },[games])
     
     return (
-        <>
+        <>  
+            <h1>Find your next journey.</h1>
+            <img src="https://i.imgur.com/l1aO3Yr.png" alt="car" />
+            <img src="https://i.imgur.com/tiCXgW3.png" alt="woods" />
+            <img src="https://i.imgur.com/yDQFpoV.png" alt="space" />
+            <img src="https://i.imgur.com/oKciuW0.png" alt="space" />
+            <img src="https://i.imgur.com/iirJWaO.png" alt="space" />
+            <br></br>
+            <img src="https://i.imgur.com/dUdFe37.png" alt="car" />
+            <img src="https://i.imgur.com/hjDyQtm.png" alt="space" />
+            <img src="https://i.redd.it/3t8imdo801071.jpg" alt="space" />
+            <img src="https://i.imgur.com/mR59fXU.png" alt="woods" />
+            <img src="https://i.imgur.com/C2ODj5V.png" alt="space" />
             <h1>Featured Games</h1>
             <div className="featured-games-cont">
                 {games && games.map((game,idx) => <GameCard key={idx} game={game}/>)}

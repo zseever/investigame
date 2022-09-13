@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
+import logo from '../../assets/logo.png';
 
 export default function NavBar({ user, setUser, randomGame }) {
 
@@ -10,8 +11,10 @@ export default function NavBar({ user, setUser, randomGame }) {
 
   return (
     <nav>
-      <Link className="site-name" to='/'>InvestiGame</Link>
-      <img src="https://i.imgur.com/Zbe7vyf.png" alt="logo" />
+      <div className="site-name">
+        <Link className="site-name" to='/'>InvestiGame</Link>
+        <img className="nav-logo" src={logo} alt="logo" />
+      </div>
       <Link to={`/games/${randomGame}`}>Random Game</Link>
       &nbsp; | &nbsp;
       <Link to='/games'>All Games</Link>

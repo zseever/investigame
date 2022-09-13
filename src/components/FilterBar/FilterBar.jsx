@@ -27,13 +27,13 @@ export default function FilterBar({ options, filterOptions, setFilterOptions }) 
         <div className="filter-cont">
             <label>{options.label}</label>
             {options.filter === 'metacritic' ?
-                <input onChange={(evt) => handleChange(evt)} type="number" min="0" max="100" autocomplete="off"></input>
+                <input onChange={(evt) => handleChange(evt)} type="number" min="0" max="100" autoComplete="off"></input>
                 :
                 <select onChange={(evt) => handleChange(evt)}>
                     {options.filter === 'genres' ?
-                        options.values.map(x => <option value={x} selected={x === 'All' ? true : false} autocomplete="off">{x}</option>)
+                        options.values.map((x,idx) => <option key={idx} value={x} autoComplete="off">{x}</option>)
                         :
-                        options.searchValues.map((x,idx) => <option value={x} selected={x === 'All' ? true : false} autocomplete="off">{options.values[idx]}</option> )
+                        options.searchValues.map((x,idx) => <option key={idx} value={x}  autoComplete="off">{options.values[idx]}</option> )
                     }
                 </select>
             }

@@ -13,7 +13,6 @@ module.exports = {
 async function index(req,res) {
     let queryStr = '';
     let queryData = req.body.queryValues
-    console.log(queryData);
     for (prop in queryData) {
         if (!(queryData[prop] === 'All' || queryData[prop] === "" || queryData[prop] === 0)) {
             if (prop === 'metacritic') {
@@ -25,7 +24,6 @@ async function index(req,res) {
             }
         }
     }
-    console.log('queryStr is:',queryStr);
     const fetchResults = await fetch(`${rootURL}/games?key=${apiKey}${queryStr}&page_size=50`);
     const jsonData = await fetchResults.json();
     const data = jsonData.results
@@ -47,19 +45,19 @@ async function featuredGames(req, res) {
     const fetchResults = await fetch(`${rootURL}/games?key=${apiKey}&page=${pageNum}&page_size=50`);
     const jsonData = await fetchResults.json();
     const data = jsonData.results.slice(randIdx,randIdx+5)
-    console.log(`featured game - pagenum: ${pageNum} - randIdx: ${randIdx}`)
     res.json(data);    
 }
 
 async function show(req, res) {
     const game = await Game.findOne({ id: req.params.id });
+    const fetchTrailers = await fetch(`${rootURL}/games/${req.params.id}/movies?key=${apiKey}`);
+    let trailers = await fetchTrailers.json();
+    trailers = trailers.results;
     if (game) {
-        console.log('stored game');
-        res.json(game);
+        res.json({game, trailers});
     } else {
         const fetchGame = await storeGame(req.params.id);
-        console.log('fetched game');
-        res.json(fetchGame);
+        res.json({'game':fetchGame, trailers});
     }
 }
 

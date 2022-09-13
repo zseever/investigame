@@ -52,9 +52,15 @@ export default function MyGamesPage() {
     <div>
       <h1>My Games</h1>
       {gameList && 
-        gameList.map((x,idx) => 
-          <div key={idx} className="my-game-row">
-            <a key={idx} href={`/games/${x.gameId}`}><p>{x.gameData.name}</p></a>
+        gameList.map((x,idx) =>
+          
+          // <img src={x.gameData.background_image} alt="image" />
+          <div key={idx} className={`my-game-row ${x.progress === 'Completed' ? 'completed' : ''}`}>
+            <a key={idx} href={`/games/${x.gameId}`}>
+              <div className="flex-row">
+                <p>{x.gameData.name}</p>
+              </div>
+            </a>
 
             {editMode[idx].edit ? 
               <>

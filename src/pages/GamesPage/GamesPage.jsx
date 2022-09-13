@@ -29,9 +29,9 @@ export default function GamesPage() {
     <>
     <h1>Games</h1>
     <div className="filter-bar">
-      <FilterBar options={consoleOptions} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
-      <FilterBar options={metacriticOptions} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
-      <FilterBar options={genreOptions} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
+      <FilterBar key='console' options={consoleOptions} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
+      <FilterBar key='meta' options={metacriticOptions} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
+      <FilterBar key='genre' options={genreOptions} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
       <button onClick={getItems}>Search</button>
     </div>
     <div className="game-card-cont">
