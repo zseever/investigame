@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react';
 import * as gamesAPI from '../../utilities/games-api';
 import * as usergamesAPI from '../../utilities/usergames-api';
 
-export default function GamePage() {
+export default function GamePage({ user }) {
     const [game, setGame] = useState(null)
+    const [userGame, setUserGame] = useState(false);
     const [display, setDisplay] = useState('desc');
     const [trailers, setTrailers] = useState([]);
     const [trailer, setTrailer] = useState('')
@@ -12,6 +13,7 @@ export default function GamePage() {
 
     async function handleAddToList(gameId) {
         await usergamesAPI.addGameToList(gameId);
+        setUserGame(true);
     }
 
 
@@ -20,7 +22,6 @@ export default function GamePage() {
         const gameData = await gamesAPI.getById(gameId);
         const game = gameData.game;
         const trailers = gameData.trailers;
-        console.log(gameData);
         setGame(game);
         if (trailers.length > 0) {
             setTrailers(trailers);
@@ -28,20 +29,28 @@ export default function GamePage() {
         }
       }
       getGame()
+      async function checkGame() {
+        const gameExists = await usergamesAPI.gameCheck(gameId);
+        console.log(gameExists);
+        setUserGame(gameExists);
+      }
+      checkGame()
     }, [gameId])
 
     return (
         <div>
             {game && (
                 <>
-                    <div>
-                        <p>{game.name}</p>
-                        <button onClick={() => handleAddToList(game.id)} type="submit">Add to My Games</button>
+                    <div className="show-title-cont">
+                        <p className="game-title">{game.name}</p>
+                        {(!userGame && user) &&
+                            <button onClick={() => handleAddToList(game.id)} type="submit">Add to My Games</button>
+                        }
                     </div>
                     <div className="flex-row">
                         <img className="show-img" src={game.background_image} alt={game.slug} />
                         <div className="flex-col">
-                            <div className="flex-row">
+                            <div className="show-buttons">
                                 <button onClick={(evt) => setDisplay(evt.target.value)} value="desc">Description</button>
                                 <button onClick={(evt) => setDisplay(evt.target.value)} value="genre">Genres & Platforms</button>
                                 {trailers.length > 0 && <button onClick={(evt) => setDisplay(evt.target.value)} value="trailer">Trailer</button>}
@@ -52,7 +61,7 @@ export default function GamePage() {
                                 {display === 'desc' ?
                                     <>
                                         <p>{game.description_raw}</p>
-                                        <a href={game.website} target="_blank" rel="noreferrer">{game.name}'s Website</a>
+                                        <a className="game-website" href={game.website} target="_blank" rel="noreferrer">{game.name}'s Website</a>
                                         <p>Release Date: {game.released}</p>
                                         {game.esrb_rating && <p>ESRB Rating: {game.esrb_rating.name}</p>}
                                     </>
@@ -70,27 +79,23 @@ export default function GamePage() {
                                         {<iframe title='trailer' src={trailer}></iframe>}
                                         <div className="flex-row preview-cont">
                                             {trailers.map(x => 
-                                                <div className="flex-col preview-thumbnails wrap">
-                                                    <button onClick={(evt) => setTrailer(evt.target.value)}
+                                                    <button className="trailer-btn" onClick={(evt) => setTrailer(evt.target.value)}
                                                     value={x.data.max}>{x.name}</button>
-                                                    <img src={x.preview} alt={x.id} />
-                                                </div>
-                                            )};
+                                            )}
                                         </div>
                                     </>
                                     :
                                     display === 'ratings' ?
                                     <>
-                                        <p>Ratings</p>
-                                        <ul>
+                                        <ul className="ratings-ul">
                                             {game.ratings.map((x,idx) => <li key={idx}>{x.title.charAt(0).toUpperCase()+x.title.slice(1)}: {Math.floor(x.percent)}% ({x.count})</li>)}
                                         </ul>
                                     </>
                                     :
                                     <>
                                         <div className="flex-col">
-                                            <img src="https://www.redditinc.com/assets/images/site/reddit-logo.png" alt="reddit-logo" />
-                                            <a href={game.reddit_url}>{game.reddit_name}</a>
+                                            <img className="reddit-logo" src="https://www.redditinc.com/assets/images/site/reddit-logo.png" alt="reddit-logo" />
+                                            <a className="reddit-website" href={game.reddit_url}>{game.reddit_name}</a>
                                             <p>{game.reddit_description}</p>
                                         </div>
                                     </>

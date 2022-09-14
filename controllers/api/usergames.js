@@ -8,6 +8,7 @@ module.exports = {
     addToList,
     updateGame,
     deleteGame,
+    gameCheck,
 }
 
 async function list(req, res) {
@@ -47,6 +48,16 @@ async function deleteGame(req, res) {
     list.gameList.splice(gameIdx,1);
     list.save();
     res.json('deleted');
+}
+
+async function gameCheck(req, res) {
+    if (!req.user) {
+        res.json(false);
+    } else {
+        const list = await Usergame.getList(req.user._id);
+        const check = list.gameList.some(x => x.gameId == req.params.id);
+        res.json(check);
+    }
 }
 
 async function storeGame(gameId) {

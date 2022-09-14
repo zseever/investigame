@@ -48,6 +48,7 @@ button {
   border:0.1vmin solid black;
   border-radius:0.3vmin;
   height:2.5vh;
+  font-size:1.5vmin;
 }
 
 button:hover {
@@ -206,7 +207,7 @@ button.filter {
 }
 
 .show-img {
-  border-radius:0.5vmin;
+  border-radius:1vmin;
   width:40vw;
   height:40vh;
   padding: 0 3vw;
@@ -227,8 +228,6 @@ button.filter {
   height:15%;
   color:white;
   font-weight:bold;
-  /* background-color:rgba(255, 255, 255, 0.7); */
-  /* background-color: rgba(76, 218, 197, 0.576); */
   background-color: rgba(41, 113, 171, 0.665);
 }
 
@@ -241,4 +240,80 @@ button.filter {
 
 .my-game-data {
   width:50%;
+}
+
+.game-title {
+  font-size:4vmin;
+  margin-bottom:1vh;
+}
+
+.show-title-cont {
+  border-bottom: 0.2vh solid black;
+  margin-bottom:2vh;
+  padding-bottom:1vh;
+}
+
+.auth-cont {
+  margin-top:5vh;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-button {
+  width:15vw;
+}
+
+.form-container {
+  display:flex;
+  flex-direction: column;
+  width:30vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.show-buttons {
+  display:flex;
+  justify-content: space-evenly;
+  width:40vw;
+}
+
+.ratings-ul {
+  list-style:none;
+}
+
+.game-website {
+  color: rgb(66, 142, 204);
+}
+
+.reddit-logo {
+  margin-top:5vh;
+  width:8vw;
+  height:8vh;
+}
+
+.reddit-website {
+  color:rgb(255, 132, 0);
+}
+
+iframe {
+  margin-top:3vh;
+  width:35vw;
+  height:30vh;
+  border-radius:1vmin;
+  box-shadow: rgba(0, 0, 0, 0.35) 1.5vmin 1.5vmin 1.5vmin;
+  margin-bottom:1vh;
+}
+
+.trailer-btn {
+  font-size:1.3vmin;
+  height:5vh;
+  width:12vw;
+}
+
+.preview-cont {
+  display:flex;
+  flex-wrap:wrap;
+  width:40vw;
 }

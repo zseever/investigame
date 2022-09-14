@@ -26,18 +26,12 @@ export default function App() {
     <main className="App">
         <>
           <NavBar user={user} setUser={setUser} randomGame={randomGame} />
-
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/games' element={<GamesPage />} />
-            <Route path='/games/:gameId' element={<GamePage />} />
+            <Route path='/games/:gameId' element={<GamePage user={user} />} />
             <Route path='/library' element={<MyGamesPage />} />
-            {/* temporary routing until a redirect after sign-in */}
-            {user ?
-              <Route path='/auth' element={<HomePage />} />
-              :
-              <Route path='/auth' element={<AuthPage setUser={setUser}/>} />
-            }
+            <Route path='/auth' element={<AuthPage setUser={setUser}/>} />
           </Routes>
         </>
     </main>

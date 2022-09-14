@@ -17,3 +17,7 @@ export function updateGame(userGameData) {
 export function deleteGame(gameId) {
     return sendRequest(`${BASE_URL}/list/games/${gameId}`, 'DELETE');
 }
+
+export function gameCheck(gameId) {
+    return sendRequest(`${BASE_URL}/list/${gameId}`);
+}
